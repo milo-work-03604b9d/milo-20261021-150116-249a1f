@@ -1,0 +1,42 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300' style='background:#1a1a1a;'>
+  <defs>
+    <pattern id='scanlines' x='0' y='0' width='4' height='4' patternTransform='rotate(90)' 
+      patternContentUnits='userSpaceOnUse'>
+      <rect width='2' height='4' fill='rgba(0, 255, 0, 0.1)' />
+    </pattern>
+    <filter id='glow'>
+      <feGaussianBlur in='SourceAlpha' stdDeviation='1.5' result='blur'/>
+      <feMerge>
+        <rt>1</rt><feFlood flood-color='#00ff41' result='color'/>
+        <rt>2</rt><use href='#blur'/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background & Scanline Overlay -->
+  <rect width='400' height='300' fill='none' pointer-events='none' />
+  <rect width='400' height='300' fill='url(#scanlines)' />
+  
+  <!-- Border Frame -->
+  <rect x='10' y='10' width='380' height='280' fill='none' stroke='#00ff41' stroke-width='4'/>
+  
+  <!-- Header -->
+  <text x='25' y='40' font-family='monospace' font-size='14' fill='#00ff41' font-weight='bold'>DIAGNOSTIC_CONSOLE_v4.2</text>
+  <line x1='25' y1='50' x2='375' y2='50' stroke='#00ff41' stroke-width='1' opacity='0.5'/>
+  
+  <!-- Data Points -->
+  <g filter='url(#glow)'>
+    <text x='30' y='90' font-family='monospace' font-size='12' fill='#00ff41'>SYSTEM_INTEGRITY: [||||||||--]     92%</text>
+    <text x='30' y='120' font-family='monospace' font-size='12' fill='#00ff41'>CORE_TEMP: 482.5 K</text>
+    <text x='30' y='150' font-family='monospace' font-size='12' fill='#00ff41'>SECTOR_LOAD:  0.04%</text>
+  </g>
+
+  <!-- Error Log Section -->
+  <rect x='30' y='180' width='340' height='80' fill='none' stroke='#00ff41' stroke-width='1' opacity='0.5'/>
+  <text x='40' y='205' font-family='monospace' font-size='10' fill='#00ff41'>> ERR_0x9F: BUFFER_OVERFLOW</text>
+  <text x='40' y='225' font-family='monospace' font-size='10' fill='#00ff41'>> WARN_0x21: VOLTAGE_FLUCTUATION</text>
+  <text x='40' y='245' font-family='monospace' font-size='10' fill='#00ff41'>> SYS_OK: RE-INITIALIZING_SUB_ROUTINE</text>
+
+  <!-- Warning Indicator -->
+  <circle cx='350' cy='250' r='8' fill='#00ff41' filter='url(#glow)'/>
+  <text x='365' y='254' font-family='monospace' font-size='10' fill='#00ff41'>ACTIVE</text>
+</svg>
